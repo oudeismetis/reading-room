@@ -16,4 +16,5 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("click"):
-		print("Click pressed!!!")
+		# print("Click pressed!")
+		pass
