@@ -1,14 +1,17 @@
 extends Spatial
 
+var is_green = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	# get_node("MeshInstance/Area").connect("input_event", self, "_cube_clicked")
-	pass
+	$MeshInstance/Area.connect("input_event", self, "_on_Area_input_event")
 
+func _get_toggled_color():
+	is_green = !is_green
+	var green = Color(0, 1, 0, 1.0)
+	var red = Color(1, 0, 0, 1.0)
+	return green if is_green else red
 
 func _on_Area_input_event(camera, event, click_position, click_normal, shape_idx):
-	# print("Inside event")
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed == true:
-			print("Cube has been clicked!")
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed == true:
+		print("Cube has been clicked!")
+		self.get_node("MeshInstance").get_active_material(0).albedo_color = _get_toggled_color()

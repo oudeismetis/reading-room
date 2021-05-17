@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Cube.gd" type="Script" id=2]
+[ext_resource path="res://reticle.png" type="Texture" id=3]
+[ext_resource path="res://ARVRCamera.gd" type="Script" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 30, 1, 30 )
@@ -10,7 +12,7 @@ extents = Vector3( 30, 1, 30 )
 size = Vector3( 60, 2, 60 )
 
 [sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.686275, 0.321569, 0.321569, 1 )
+albedo_color = Color( 0, 1, 0, 1 )
 metallic = 0.23
 
 [sub_resource type="CubeMesh" id=3]
@@ -28,6 +30,15 @@ transform = Transform( 1, 0, 0, 0, 0.672212, 0.740359, 0, -0.740359, 0.672212, 0
 shadow_enabled = true
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
+script = ExtResource( 4 )
+
+[node name="Reticle" type="TextureRect" parent="ARVRCamera"]
+margin_right = 20.0
+margin_bottom = 20.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Ground" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
@@ -51,5 +62,3 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Cube/MeshInstance/Area"]
 shape = SubResource( 4 )
-
-[connection signal="input_event" from="Cube/MeshInstance/Area" to="Cube" method="_on_Area_input_event"]
