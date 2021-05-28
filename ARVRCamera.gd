@@ -9,6 +9,7 @@ extends ARVRCamera
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# screen_metrics()
+	# TODO - This code isn't needed. Archor does same thing but also isn't working correctly for VR it seems
 	# var resolution = get_viewport().size
 	# var screen_center = Vector2(resolution.x / 2, resolution.y / 2)
 	# self.get_node("Reticle").set_global_position(screen_center)
