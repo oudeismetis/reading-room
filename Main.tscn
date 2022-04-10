@@ -1,16 +1,21 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Cube.gd" type="Script" id=2]
 [ext_resource path="res://reticle.png" type="Texture" id=3]
 [ext_resource path="res://ARVRCamera.gd" type="Script" id=4]
 [ext_resource path="res://Book.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/green_grid.png" type="Texture" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 30, 1, 30 )
 
 [sub_resource type="CubeMesh" id=2]
-size = Vector3( 60, 2, 60 )
+size = Vector3( 1000, 2, 1000 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 6 )
+uv1_scale = Vector3( 100, 100, 1 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0, 1, 0, 1 )
@@ -32,6 +37,7 @@ transform = Transform( 1, 0, 0, 0, 0.672212, 0.740359, 0, -0.740359, 0.672212, 0
 shadow_enabled = true
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38038, 0 )
 script = ExtResource( 4 )
 
 [node name="Reticle" type="TextureRect" parent="ARVRCamera"]
@@ -55,10 +61,10 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Ground"]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 6 )
 
 [node name="Cube" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12876, 0.525934, -0.737808 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12876, 0.525934, 3.13966 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Cube"]
